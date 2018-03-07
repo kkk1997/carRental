@@ -18,6 +18,8 @@ public class Car {
     private BigDecimal price;
     @Column
     private Integer age;
+    @OneToOne
+    private Lend lend;
 
     public Car(String licensePlateNumber, String type, BigDecimal price, int age) {
         this.licensePlateNumber = licensePlateNumber;
@@ -64,6 +66,22 @@ public class Car {
         this.age = age;
     }
 
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public Lend getLend() {
+        return lend;
+    }
+
+    public void setLend(Lend lend) {
+        this.lend = lend;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,7 +94,8 @@ public class Car {
             return false;
         if (type != null ? !type.equals(car.type) : car.type != null) return false;
         if (price != null ? !price.equals(car.price) : car.price != null) return false;
-        return age != null ? age.equals(car.age) : car.age == null;
+        if (age != null ? !age.equals(car.age) : car.age != null) return false;
+        return lend != null ? lend.equals(car.lend) : car.lend == null;
     }
 
     @Override
@@ -86,6 +105,7 @@ public class Car {
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (lend != null ? lend.hashCode() : 0);
         return result;
     }
 
