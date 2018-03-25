@@ -2,10 +2,13 @@ package carrental.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table
+@Table(name = "LEND")
 public class Lend {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
@@ -20,6 +23,10 @@ public class Lend {
     @Column
     private Boolean actual;
 
+    @Column
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Payment> payments;
+
 
     public Lend(Car car, User user, LocalDate startDate, LocalDate endDate) {
         this.car = car;
@@ -27,18 +34,27 @@ public class Lend {
         this.startDate = startDate;
         this.endDate = endDate;
         actual = true;
+        payments = new ArrayList<>();
     }
 
     public Lend(){
 
     }
 
-    public Long getID() {
-        return ID;
+    public String getActualString() {
+        return actual? "igen" : "nem";
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void addPayment(Payment payment) {
+        payments.add(payment);
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payment) {
+        this.payments = payment;
     }
 
     public Car getCar() {
@@ -65,9 +81,7 @@ public class Lend {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
+    public LocalDate getEndDate() {   return endDate;  }
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
@@ -81,25 +95,37 @@ public class Lend {
         this.actual = actual;
     }
 
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        Lend lend = (Lend) o;
+        Lend lend = (Lend)o;
 
-        if (ID != null ? !ID.equals(lend.ID) : lend.ID != null) return false;
-        if (car != null ? !car.equals(lend.car) : lend.car != null) return false;
-        if (user != null ? !user.equals(lend.user) : lend.user != null) return false;
-        if (startDate != null ? !startDate.equals(lend.startDate) : lend.startDate != null) return false;
-        if (endDate != null ? !endDate.equals(lend.endDate) : lend.endDate != null) return false;
+        if (car != null ? !car.equals(lend.car) : lend.car != null)
+            return false;
+        if (user != null ? !user.equals(lend.user) : lend.user != null)
+            return false;
+        if (startDate != null ? !startDate.equals(lend.startDate) : lend.startDate != null)
+            return false;
+        if (endDate != null ? !endDate.equals(lend.endDate) : lend.endDate != null)
+            return false;
         return actual != null ? actual.equals(lend.actual) : lend.actual == null;
     }
 
     @Override
     public int hashCode() {
-        int result = ID != null ? ID.hashCode() : 0;
-        result = 31 * result + (car != null ? car.hashCode() : 0);
+        int result = car != null ? car.hashCode() : 0;
         result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
