@@ -8,6 +8,7 @@ import carrental.service.interf.ILendService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,5 +80,14 @@ public class DummyCarService extends DummyCarServiceControl implements ICarServi
     @Override
     public Car getCarOfLicensePlateNumber(String lpn) {
         return carDAO.findByLicensePlateNumber(lpn);
+    }
+
+    @Override
+    public List<Car> actualOffer() {
+        return listCar().stream()
+                .filter(car -> car.getLend() == null)
+                .sorted(Comparator.comparing(Car::getPrice))
+                .limit(10)
+                .collect(Collectors.toList());
     }
 }

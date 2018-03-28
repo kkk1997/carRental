@@ -49,4 +49,11 @@ public interface ICarService {
      * @return A keresett autó
      */
     Car getCarOfLicensePlateNumber(String lpn);
+
+    /**
+     * Aktuális ajánlatok összegyűjtése (10 legolcsóbb aktuális autó)
+     * @return Aktuális ajánlatok
+     */
+    List<Car> actualOffer();
+
 }
