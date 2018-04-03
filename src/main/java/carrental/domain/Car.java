@@ -10,7 +10,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long ID;
-    @Column
+    @Column(name = "licenseplatenumber")
     private String licensePlateNumber;
     @Column
     private String type;
@@ -20,12 +20,15 @@ public class Car {
     private Integer age;
     @OneToOne
     private Lend lend;
+    @Lob
+    private String image;
 
     public Car(String licensePlateNumber, String type, BigDecimal price, int age) {
         this.licensePlateNumber = licensePlateNumber;
         this.type = type;
         this.price = price;
         this.age = age;
+        this.image = "img/kep1.jpg";
     }
 
     public Car() {
@@ -33,6 +36,13 @@ public class Car {
         price = BigDecimal.ZERO;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getLicensePlateNumber() {
         return licensePlateNumber;
@@ -84,28 +94,22 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Car car = (Car) o;
-
-        if (ID != null ? !ID.equals(car.ID) : car.ID != null) return false;
-        if (licensePlateNumber != null ? !licensePlateNumber.equals(car.licensePlateNumber) : car.licensePlateNumber != null)
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
             return false;
-        if (type != null ? !type.equals(car.type) : car.type != null) return false;
-        if (price != null ? !price.equals(car.price) : car.price != null) return false;
-        if (age != null ? !age.equals(car.age) : car.age != null) return false;
-        return lend != null ? lend.equals(car.lend) : car.lend == null;
+
+        Car car = (Car)o;
+
+        if (ID != null ? !ID.equals(car.ID) : car.ID != null)
+            return false;
+        return licensePlateNumber != null ? licensePlateNumber.equals(car.licensePlateNumber) : car.licensePlateNumber == null;
     }
 
     @Override
     public int hashCode() {
         int result = ID != null ? ID.hashCode() : 0;
         result = 31 * result + (licensePlateNumber != null ? licensePlateNumber.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (lend != null ? lend.hashCode() : 0);
         return result;
     }
 

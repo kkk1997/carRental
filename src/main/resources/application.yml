@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:~/carrental;db_close_on_exit=false
+    initialize: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+  management:
+    security:
+      enabled:  false
+server:
+   port: 8080
