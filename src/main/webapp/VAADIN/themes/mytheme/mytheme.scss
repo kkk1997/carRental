@@ -1,0 +1,179 @@
+@import "../valo/valo.scss";
+
+@mixin mytheme{
+    @include valo;
+
+    .home{
+        background-color: #42c191;
+        background-image: url(http://blog.hdwallsource.com/wp-content/uploads/2015/05/toy-car-wallpaper-39199-40102-hd-wallpapers.jpg);
+        height: -webkit-fill-available;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .v-grid {
+    	-webkit-user-select: text;
+    	-moz-user-select: text;
+    	-ms-user-select: text;
+    	user-select: text;
+    	background-color: white;
+    }
+
+    .font-label{
+    	color: black;
+        font-weight: bold;
+        text-shadow: 3px -2px rgba(18, 210, 143, 0.49);
+        font-size: 40px;
+        font-family: cursive;
+        width: 450px;
+    }
+
+    .v-grid-row-selected > .v-grid-cell {
+    	background-image: -webkit-linear-gradient(top, rgb(0, 204, 236) 2%, rgba(93, 232, 123, 0.85) 98%);
+    	background-image: linear, to bottom, #9df9a9 2%, #9fc3ef 98%;
+    	color: #000000;
+    	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.51);
+    	border-color: #a9bfa5;
+    }
+
+    .v-align-center {
+    	background-image: url(http://blog.hdwallsource.com/wp-content/uploads/2015/05/toy-car-wallpaper-39199-40102-hd-wallpapers.jpg);
+    	text-align: center;
+    	background-size: cover;
+    	font-weight: bold;
+    	font-color: #000000;
+
+    }
+     .v-margin-top {
+        padding-top: 0px;
+    }
+
+     .v-margin-right {
+        padding-right: 0px;
+    }
+
+     .v-margin-bottom {
+        padding-bottom: 0px;
+    }
+
+     .v-margin-left {
+        padding-left: 0px;
+    }
+
+    .v-tabsheet-tabitemcell .v-tabsheet-tabitem-selected .v-caption.v-caption {
+    	border-bottom-color: #1284f7;
+    	color: #121417;
+    	font-weight: bold;
+    	font-size: x-large;
+    }
+
+    .v-tabsheet-tabitemcell .v-caption {
+    	margin-left: 19px;
+    	padding: 0 4px;
+    	box-sizing: border-box;
+    	cursor: pointer;
+    	text-align: center;
+    	line-height: 37px;
+    	font-size: 15px;
+    	font-weight: bolder;
+    	color: #000000;
+    	width: auto !important;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	border-bottom: 2px solid transparent;
+    	position: relative;
+    	-webkit-transition: border-bottom 200ms, color 200ms;
+    	-moz-transition: border-bottom 200ms, color 200ms;
+    	transition: border-bottom 200ms, color 200ms;
+    }
+
+
+    .v-app .v-app-loading {
+        font: 300 16px/1.55 "Open Sans", sans-serif;
+        font-weight:bolder;
+        color: #464646;
+        background-color: #fafafa;
+        cursor: default;
+    }
+
+    .v-grid {
+    	outline: none;
+    	margin-left:40px;
+    	margin-top:30px;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+        background-color: rgba(137, 141, 142, 0.49);
+    }
+
+    .v-menubar {
+    	margin: 10px 0px 0px 40px;
+    }
+
+    .v-button {
+        margin: -10px 0px -40px 40px;
+    }
+
+	.button {
+	    margin: 10px 0px 0px 0px;
+	    background-image: -webkit-linear-gradient(top, #fafafa 2%, rgba(86, 236, 133, 0.76) 98%);
+	}
+
+    .v-label {
+    	color: black;
+    }
+
+    .caption{
+        line-height: inherit;
+        font-weight: 600;
+        color: black;
+        font: icon;
+    }
+
+    .v-disabled {
+    	cursor: default !important;
+    	display: inline-block;
+    	line-height: inherit;
+    	font-weight: 600;
+    	color: black;
+    	font: icon;
+    }
+
+    .v-caption {
+    	font-size: 14px;
+    	font-weight: 400;
+    	padding-bottom: 0.3em;
+    	padding-left: 1px;
+    	color: aliceblue;
+    }
+
+    .v-menubar  > .v-menubar-menuitem {
+	   background-color: rgba(31, 195, 236, 0.38)
+    }
+
+    .commit-label{
+        color: rgb(247, 247, 247);
+        font-weight: 900;
+        background-color: rgba(24, 25, 23, 0.62);
+     }
+
+    .v-window-contents  > .v-scrollable  > .v-margin-left {
+        padding-left: 12px;
+     	background-color: rgba(193, 241, 198, 0.49);
+    }
+
+     .v-grid-cell {
+         color: black;
+         font-weight: 500;
+         line-height: 50px;
+      }
+
+     .v-grid-header th {
+     	font-size: 14px;
+      	font-weight: bold;
+      	font-size: initial;
+     }
+}
