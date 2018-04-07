@@ -4,9 +4,6 @@ import carrental.service.impl.MessageSourc;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.UI;
 
-/**
- * Created by Gani Leila on 2017.08.22..
- */
 public class UserMenu extends MenuBar {
 
     UserMenu() {

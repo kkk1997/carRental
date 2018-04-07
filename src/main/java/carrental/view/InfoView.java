@@ -4,9 +4,6 @@ package carrental.view;
 import carrental.service.impl.MessageSourc;
 import com.vaadin.ui.*;
 
-/**
- * Created by Gani Leila on 2017.08.15..
- */
 public class InfoView extends Window {
 
     private Button confirmBt ;
