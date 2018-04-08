@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DummyUserService extends DummyUserServiceControl implements IUserService {
 
@@ -32,11 +33,11 @@ public class DummyUserService extends DummyUserServiceControl implements IUserSe
     }
 
     @Override
-    public boolean controlPassword(String account, String password)throws RuntimeException{
-        controlPasswordControl(account, password);
+    public boolean controlPassword(String email, String password)throws RuntimeException{
+        controlPasswordControl(email, password);
         return userDAO.findAll()
                       .stream()
-                      .anyMatch(u -> u.getEmail().equals(account) && u.getPassword().equals(password));
+                      .anyMatch(u -> u.getEmail().equals(email) && u.getPassword().equals(password));
     }
 
     @Override
@@ -80,15 +81,15 @@ public class DummyUserService extends DummyUserServiceControl implements IUserSe
 
 
     @Override
-    public User createUser(String name, String address, String account, String pw, LocalDate driverLicenseExp,String accountNumber) throws RuntimeException{
-        return createUser(name, address, account, pw, driverLicenseExp, accountNumber, Role.CUSTOMER);
+    public User createUser(String name, String address, String email, String pw, LocalDate driverLicenseExp,String accountNumber) throws RuntimeException{
+        return createUser(name, address, email, pw, driverLicenseExp, accountNumber, Role.CUSTOMER);
     }
 
     @Override
-    public User createUser(String name, String address, String account, String pw, LocalDate driverLicenseExp,String accountNumber, Role role) throws RuntimeException{
-        createUserControl(name, address, account, pw,accountNumber,driverLicenseExp);
-        if(!checkName(account)){
-            User newUser = new User(name,address,account,pw,driverLicenseExp,accountNumber,role);
+    public User createUser(String name, String address, String email, String pw, LocalDate driverLicenseExp,String accountNumber, Role role) throws RuntimeException{
+        createUserControl(name, address, email, pw,accountNumber,driverLicenseExp);
+        if(!checkName(email)){
+            User newUser = new User(name,address,email,pw,driverLicenseExp,accountNumber,role);
             userDAO.save(newUser);
             return newUser;
         }
@@ -150,12 +151,16 @@ public class DummyUserService extends DummyUserServiceControl implements IUserSe
     }
 
     @Override
-    public User getUserOfName(String name){
-        return userDAO.findByName(name);
+    public List<User> getUserOfName(String name){
+        return listUser().stream()
+                .filter(user -> user.getName().equals(name))
+                .collect(Collectors.toList());
     }
 
     @Override
     public User getUserOfEmail(String email){
+        if(userDAO.findByEmail(email)==null)
+            throw  new IllegalArgumentException("Nem található ilyen e-mail cím!");
         return userDAO.findByEmail(email);
     }
 }

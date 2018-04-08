@@ -28,7 +28,7 @@ public interface IUserService {
      * @param password Felhasználó jelszava
      * @return true A felhasználónév és a jelszó megfelelő
      */
-    boolean controlPassword(String account, String password);
+    boolean controlPassword(String email, String password);
 
     /**
      * Számlára pénzfeltöltés
@@ -52,9 +52,9 @@ public interface IUserService {
      * @param pw Létrehozni kívánt felhasználó jelszava
      * @return Az új felhasználó
      */
-    User createUser(String name, String address, String account, String pw,LocalDate driverLicenseExp,String accountNumber);
+    User createUser(String name, String address, String email, String pw,LocalDate driverLicenseExp,String accountNumber);
 
-    User createUser(String name, String address, String account, String pw,LocalDate driverLicenseExp,String accountNumber, Role role);
+    User createUser(String name, String address, String email, String pw,LocalDate driverLicenseExp,String accountNumber, Role role);
 
     /**
      * Új felhasználó létrehozása
@@ -95,7 +95,7 @@ public interface IUserService {
      * @param name Visszaadott User neve
      * @return Keresett User
      */
-    User getUserOfName(String name);
+    List<User> getUserOfName(String name);
 
     /**
      * E-mail alapján visszaadja a Usert

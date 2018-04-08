@@ -53,7 +53,8 @@ public class DummyCarService extends DummyCarServiceControl implements ICarServi
     @Override
     public Car deleteCar(Car car) throws RuntimeException {
         editCarControl(car, "Nem sikerült az autó törlése!");
-        deleteLend(car);
+        if(car.getLend()!=null)
+            deleteLend(car);
         carDAO.delete(car);
         return car;
     }
